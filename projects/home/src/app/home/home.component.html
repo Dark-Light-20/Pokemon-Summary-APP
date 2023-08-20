@@ -1,0 +1,19 @@
+<section class="text-center mb-5">
+  <h1>{{ projectTitle }}</h1>
+  <p>
+    The {{ projectTitle }} is an academic example web project that brings the
+    captivating world of Pokémon using a new frontend architecure aproach.
+  </p>
+  <ul class="text-start">
+    <li>Leveraging on the PokeApi open-source API service.</li>
+    <li>
+      Developed using Angular, the app boasts a cutting-edge architecture that
+      embraces micro frontends and harnesses the potential of module federation.
+    </li>
+    <li>
+      This architecture is composed of four main applications, each catering to
+      a distinct aspect of the Pokémon universe.
+    </li>
+  </ul>
+</section>
+<app-random-pokemon [pokemon]="pokemon$ | async"></app-random-pokemon>
