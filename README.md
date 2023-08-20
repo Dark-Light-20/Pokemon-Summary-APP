@@ -5,9 +5,14 @@ This project contains an example application for learning implementation of micr
 ## Table of Contents
 
 1. [Architecture](#architecture)
-2. [Host app](#host)
-3. [Home](#home)
-4. [Pokemons](#pokemons)
+
+- [Host app](#host)
+- [Home](#home)
+- [Pokemons](#pokemons)
+
+2. [Api](#api)
+
+- [Pokemon Model](#pokemon-model)
 
 ## Architecture
 
@@ -38,3 +43,14 @@ The Home application contains one page component that displays the app title and
 ## Pokemons
 
 The Pokemons application contains two page components that displays a table list of pokemon name, number and a button to go to the pokemon's detail, and the second page is the pokemon detail page, it has some basic info and a picture.
+
+# Api
+
+This project uses the [Pokeapi](https://pokeapi.co/) public web api. This api provides many resources related of the famous Pokemon VideoGames and Anime series saga, those reosurces include pokemon entity info, abilities, locations, generations, etc.
+
+The principal resource that is consumed in this project is the entity _Pokemon_, with its list and detail requests.
+
+## Pokemon Model
+
+This entity represents the creatures called Pokemons, a more detailed description is provided by the api doc page:
+_Pokémon are the creatures that inhabit the world of the Pokémon games. They can be caught using Pokéballs and trained by battling with other Pokémon. Each Pokémon belongs to a specific species but may take on a variant which makes it differ from other Pokémon of the same species, such as base stats, available abilities and typings._ [Pokemon](https://pokeapi.co/docs/v2#pokemon).
