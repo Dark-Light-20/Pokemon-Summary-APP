@@ -1,4 +1,4 @@
-<h1 id="title">Pokemon List</h1>
+<h1 id="title">Game group List</h1>
 <hr />
 <div class="col-12 col-md-8 col-lg-6 table-responsive">
   <table class="table table-striped table-hover" aria-labelledby="title">
@@ -10,14 +10,14 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      <ng-container *ngIf="pokemons.length > 0; else preload">
-        <tr *ngFor="let pokemon of pokemons">
-          <th scope="row">{{ pokemon.id }}</th>
-          <td>{{ pokemon.name | titlecase }}</td>
+      <ng-container *ngIf="games.length > 0; else preload">
+        <tr *ngFor="let game of games">
+          <th scope="row">{{ game.id }}</th>
+          <td>{{ game.name | titlecase }}</td>
           <td class="text-center">
             <i
               class="go-detail-btn bi bi-caret-right-square-fill"
-              [routerLink]="['detail', pokemon.id]"
+              [routerLink]="['detail', game.id]"
             ></i>
           </td>
         </tr>
@@ -25,7 +25,7 @@
     </tbody>
   </table>
 </div>
-<nav *ngIf="pokemons.length > 0" aria-label="Pokemon list navigation">
+<nav aria-label="Pokemon list navigation" *ngIf="games.length > 0">
   <ul class="pagination">
     <li id="previousBtn" class="page-item" [class.disabled]="actualPage === 1">
       <a

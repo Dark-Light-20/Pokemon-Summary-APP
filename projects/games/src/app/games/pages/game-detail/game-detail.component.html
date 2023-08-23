@@ -1,0 +1,25 @@
+<ng-container *ngIf="game; else preload">
+  <div class="d-flex justify-content-center align-items-center mb-4">
+    <h1 class="me-3">
+      Pokemon: {{ game.name.replaceAll("-", " ") | titlecase }}
+    </h1>
+    <span class="badge rounded-pill text-bg-info fs-6">
+      {{ generationName | titlecase }}
+    </span>
+  </div>
+  <p id="regionsText" class="fw-bold fs-4 mb-3">
+    Regions: {{ regionsText | titlecase }}
+  </p>
+  <p id="gamesText" class="fw-bold fs-4 mb-3">
+    Games: {{ gamesText | titlecase }}
+  </p>
+</ng-container>
+
+<ng-template #preload>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mb-4">Loading Pokemon Game Version Data...</h1>
+    <div class="loader spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>
