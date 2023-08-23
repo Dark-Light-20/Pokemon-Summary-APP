@@ -1,0 +1,23 @@
+version: "3"
+services:
+  home:
+    build:
+      args:
+        APP: home
+    image: pokesummary-home
+    ports:
+      - 8001:80
+  pokemons:
+    build:
+      args:
+        APP: pokemons
+    image: pokesummary-pokemons
+    ports:
+      - 8002:80
+  games:
+    build:
+      args:
+        APP: games
+    image: pokesummary-games
+    ports:
+      - 8003:80
