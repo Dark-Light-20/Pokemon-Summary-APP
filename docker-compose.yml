@@ -1,5 +1,12 @@
 version: "3"
 services:
+  host:
+    build:
+      args:
+        APP: host
+    image: pokesummary-host
+    ports:
+      - 8000:80
   home:
     build:
       args:

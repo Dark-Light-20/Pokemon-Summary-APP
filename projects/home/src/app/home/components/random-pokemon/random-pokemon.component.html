@@ -3,7 +3,7 @@
   <ng-container *ngIf="pokemon; else preload">
     <div class="col-10 col-sm-4">
       <img
-        class="img-fluid rounded-circle border border-2 border-primary-subtle bg-info-subtle w-100"
+        class="img-fluid rounded-circle border border-2 border-primary-subtle bg-info-subtle p-3"
         [src]="pokemon.sprites.front_default"
         alt="Random Pokemon thumbnail"
       />
@@ -11,7 +11,7 @@
     <div class="col-12 mt-3">
       <button
         class="btn btn-info fs-4 fw-semibold rounded-pill text-black px-4"
-        [routerLink]="['/pokemons', pokemon.id]"
+        [routerLink]="['/pokemons/detail', pokemon.id]"
       >
         ¡It's {{ pokemon.name | titlecase }}!
       </button>
@@ -24,7 +24,7 @@
     class="col-10 col-sm-4 p-4 rounded-circle border border-2 border-primary-subtle bg-info-subtle"
   >
     <img
-      class="preload img-fluid"
+      class="preload img-fluid p-3"
       [src]="preloadImgSrc"
       alt="Random Pokemon preload thumbnail"
     />

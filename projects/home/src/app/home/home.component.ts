@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from './models/pokemon.model';
-import { MOCK_POKEMON } from './utils/mocks/pokemon.mock';
 import { PokemonService } from './services/pokemon.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
