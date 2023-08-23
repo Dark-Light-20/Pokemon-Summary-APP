@@ -1,4 +1,4 @@
-<div *ngIf="pokemon" class="row d-flex align-items-center">
+<div *ngIf="pokemon; else preload" class="row d-flex align-items-center">
   <div class="col-12 col-sm-6 col-md-4 mb-3">
     <img
       class="img-fluid rounded-circle border border-2 border-primary-subtle bg-info-subtle w-100"
@@ -40,3 +40,12 @@
     </div>
   </div>
 </div>
+
+<ng-template #preload>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mb-4">Loading Pokemon Data...</h1>
+    <div class="loader spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>

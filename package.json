@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test:host": "jest --coverage --rootDir='projects/host'",
     "test:home": "jest --coverage --rootDir='projects/home'",
-    "test:pokemons": "jest --coverage --rootDir='projects/pokemons'"
+    "test:pokemons": "jest --coverage --rootDir='projects/pokemons'",
+    "test:games": "jest --coverage --rootDir='projects/games'"
   },
   "private": true,
   "dependencies": {
