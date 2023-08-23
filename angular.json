@@ -152,6 +152,81 @@
           }
         }
       }
+    },
+    "pokemons": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/pokemons",
+      "sourceRoot": "projects/pokemons/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/pokemons",
+            "index": "projects/pokemons/src/index.html",
+            "main": "projects/pokemons/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "projects/pokemons/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/pokemons/src/favicon.ico",
+              "projects/pokemons/src/assets"
+            ],
+            "styles": ["projects/pokemons/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "pokemons:build:production"
+            },
+            "development": {
+              "browserTarget": "pokemons:build:development",
+              "port": 4202
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pokemons:build"
+          }
+        }
+      }
     }
   },
   "cli": {

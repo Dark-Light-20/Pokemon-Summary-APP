@@ -1,0 +1,42 @@
+<div *ngIf="pokemon" class="row d-flex align-items-center">
+  <div class="col-12 col-sm-6 col-md-4 mb-3">
+    <img
+      class="img-fluid rounded-circle border border-2 border-primary-subtle bg-info-subtle w-100"
+      [src]="pokemon.sprites.front_default"
+      alt="Random Pokemon thumbnail"
+    />
+  </div>
+  <div class="col-12 col-sm-6 col-md-8">
+    <h3>Name: {{ pokemon.name | titlecase }}</h3>
+    <h4>Types:</h4>
+    <div class="row mb-3">
+      <div *ngFor="let type of pokemon.types" class="col-auto">
+        <span
+          class="badge text-light type-{{
+            type.type.name
+          }} border border-2 fs-6"
+          >{{ type.type.name | titlecase }}</span
+        >
+      </div>
+    </div>
+    <h5>Info:</h5>
+    <div class="row mb-3">
+      <span class="col-auto">
+        Height: <b> {{ pokemon.height }}</b>
+      </span>
+      <span class="col-auto">
+        Weight: <b>{{ pokemon.weight }}</b>
+      </span>
+      <span class="col-auto">
+        Base experience: <b>{{ pokemon.base_experience }}</b>
+      </span>
+    </div>
+    <h5>Base statistics:</h5>
+    <div class="row mb-3">
+      <span *ngFor="let stat of pokemon.stats" class="col-auto">
+        {{ stat.stat.name.replace("-", " ") | titlecase }}:
+        <b>{{ stat.base_stat }}</b>
+      </span>
+    </div>
+  </div>
+</div>
