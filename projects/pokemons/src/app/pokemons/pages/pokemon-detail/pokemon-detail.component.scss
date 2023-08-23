@@ -1,0 +1,7 @@
+@import "../../utils/styles/colors.scss";
+
+@each $type, $color in $type-colors {
+  .type-#{$type} {
+    background-color: $color;
+  }
+}
