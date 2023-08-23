@@ -12,6 +12,14 @@
 
 .preload {
   animation: preloadAnimation 0.6s infinite;
-  width: 260px;
-  height: 260px;
+}
+
+img {
+  width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  img {
+    width: 75%;
+  }
 }
