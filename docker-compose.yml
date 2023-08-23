@@ -28,3 +28,8 @@ services:
     image: pokesummary-games
     ports:
       - 8003:80
+  config-api:
+    build: ./api
+    image: pokesummary-config-api
+    ports:
+      - 3000:80

@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/host",
             "index": "projects/host/src/index.html",
@@ -28,7 +28,9 @@
               "projects/host/src/assets"
             ],
             "styles": ["projects/host/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/host/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -44,7 +46,14 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "fileReplacements": [
+                {
+                  "replace": "projects/host/src/environments/environment.ts",
+                  "with": "projects/host/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/host/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -58,22 +67,29 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "host:build:production"
+              "browserTarget": "host:build:production",
+              "extraWebpackConfig": "projects/host/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "host:build:development",
               "port": 4200
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4200,
+            "publicHost": "http://localhost:4200",
+            "extraWebpackConfig": "projects/host/webpack.config.js"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "host:build"
+            "browserTarget": "host:build",
+            "extraWebpackConfig": "projects/host/webpack.config.js"
           }
         }
       }
@@ -90,7 +106,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/home",
             "index": "projects/home/src/index.html",
@@ -103,7 +119,9 @@
               "projects/home/src/assets"
             ],
             "styles": ["projects/home/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/home/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -119,7 +137,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/home/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -133,22 +152,29 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "home:build:production"
+              "browserTarget": "home:build:production",
+              "extraWebpackConfig": "projects/home/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "home:build:development",
               "port": 4201
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201,
+            "publicHost": "http://localhost:4201",
+            "extraWebpackConfig": "projects/home/webpack.config.js"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "home:build"
+            "browserTarget": "home:build",
+            "extraWebpackConfig": "projects/home/webpack.config.js"
           }
         }
       }
@@ -165,7 +191,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/pokemons",
             "index": "projects/pokemons/src/index.html",
@@ -178,7 +204,9 @@
               "projects/pokemons/src/assets"
             ],
             "styles": ["projects/pokemons/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/pokemons/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -194,7 +222,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/pokemons/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -208,22 +237,29 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pokemons:build:production"
+              "browserTarget": "pokemons:build:production",
+              "extraWebpackConfig": "projects/pokemons/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "pokemons:build:development",
               "port": 4202
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4202,
+            "publicHost": "http://localhost:4202",
+            "extraWebpackConfig": "projects/pokemons/webpack.config.js"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "pokemons:build"
+            "browserTarget": "pokemons:build",
+            "extraWebpackConfig": "projects/pokemons/webpack.config.js"
           }
         }
       }
@@ -240,7 +276,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/games",
             "index": "projects/games/src/index.html",
@@ -253,7 +289,9 @@
               "projects/games/src/assets"
             ],
             "styles": ["projects/games/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/games/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -269,7 +307,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/games/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -283,23 +322,53 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "games:build:production"
+              "browserTarget": "games:build:production",
+              "extraWebpackConfig": "projects/games/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "games:build:development",
               "port": 4203
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4203,
+            "publicHost": "http://localhost:4203",
+            "extraWebpackConfig": "projects/games/webpack.config.js"
+          }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "games:build"
+            "browserTarget": "games:build",
+            "extraWebpackConfig": "projects/games/webpack.config.js"
           }
+        }
+      }
+    },
+    "shared-lib": {
+      "projectType": "library",
+      "root": "projects/shared-lib",
+      "sourceRoot": "projects/shared-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/shared-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shared-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/shared-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

@@ -2,6 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WelcomeComponent } from './welcome.component';
 import { By } from '@angular/platform-browser';
+import { SharedLibService } from 'shared-lib';
+
+const sharedLibServiceMock = {
+  dummyUUID: 'random',
+};
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;
@@ -10,6 +15,9 @@ describe('WelcomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WelcomeComponent],
+      providers: [
+        { provide: SharedLibService, useValue: sharedLibServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WelcomeComponent);

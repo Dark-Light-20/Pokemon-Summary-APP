@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from './models/pokemon.model';
 import { PokemonService } from './services/pokemon.service';
 import { Observable } from 'rxjs';
+import { SharedLibService } from 'shared-lib';
 
 @Component({
   selector: 'app-home',
@@ -17,9 +18,13 @@ export class HomeComponent implements OnInit {
     return this._pokemon$;
   }
 
-  constructor(private _pokemonService: PokemonService) {}
+  constructor(
+    private _pokemonService: PokemonService,
+    private _sharedLib: SharedLibService
+  ) {}
 
   ngOnInit(): void {
     this._pokemon$ = this._pokemonService.getRandomPokemon();
+    console.log(this._sharedLib.dummyUUID);
   }
 }

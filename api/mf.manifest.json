@@ -1,0 +1,5 @@
+{
+  "home": "http://localhost:8001/remoteEntry.js",
+  "pokemons": "http://localhost:8002/remoteEntry.js",
+  "games": "http://localhost:8003/remoteEntry.js"
+}

@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, Routes } from '@angular/router';
 import { MockComponent } from 'ng-mocks';
 import { PokemonDetailComponent } from '../pokemon-detail/pokemon-detail.component';
+import { SharedLibService } from 'shared-lib';
 
 const pokemonServiceMock = {
   getListData: jest.fn().mockReturnValue(of(POKEMON_LIST_MOCK)),
@@ -18,6 +19,10 @@ const mockRoutes: Routes = [
   { path: '', component: PokemonListComponent },
   { path: 'detail/:id', component: MockComponent(PokemonDetailComponent) },
 ];
+
+const sharedLibServiceMock = {
+  dummyUUID: 'random',
+};
 
 describe('PokemonListComponent', () => {
   let component: PokemonListComponent;
@@ -31,7 +36,10 @@ describe('PokemonListComponent', () => {
         PokemonListComponent,
         MockComponent(PokemonDetailComponent),
       ],
-      providers: [{ provide: PokemonService, useValue: pokemonServiceMock }],
+      providers: [
+        { provide: PokemonService, useValue: pokemonServiceMock },
+        { provide: SharedLibService, useValue: sharedLibServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PokemonListComponent);
