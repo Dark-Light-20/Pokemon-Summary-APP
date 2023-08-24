@@ -1,5 +1,23 @@
 {
-  "home": "http://localhost:8001/remoteEntry.js",
-  "pokemons": "http://localhost:8002/remoteEntry.js",
-  "games": "http://localhost:8003/remoteEntry.js"
+  "home": {
+    "remoteEntry": "http://localhost:8001/remoteEntry.js",
+    "exposedModule": "./HomeModule",
+    "displayName": "Home",
+    "routePath": "home",
+    "ngModuleName": "HomeModule"
+  },
+  "pokemons": {
+    "remoteEntry": "http://localhost:8002/remoteEntry.js",
+    "exposedModule": "./PokemonsModule",
+    "displayName": "Pokemons",
+    "routePath": "pokemons",
+    "ngModuleName": "PokemonsModule"
+  },
+  "games": {
+    "remoteEntry": "http://localhost:8003/remoteEntry.js",
+    "exposedModule": "./GamesModule",
+    "displayName": "Games",
+    "routePath": "games",
+    "ngModuleName": "GamesModule"
+  }
 }

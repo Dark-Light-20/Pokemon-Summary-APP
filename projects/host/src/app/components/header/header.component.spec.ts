@@ -8,6 +8,7 @@ import { By } from '@angular/platform-browser';
 import { Router, Routes } from '@angular/router';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MfRoutesService } from '../../services/mf-routes.service';
 
 const themeServiceMock = {
   actualTheme$: of(Theme.DARK),
@@ -22,6 +23,36 @@ class MockPokemonsComponent {}
 
 @Component({ selector: 'games' })
 class MockGamesComponent {}
+
+jest.mock('@angular-architects/module-federation', () => ({
+  getManifest: jest.fn().mockImplementation(() => mfRoutesServiceMock),
+}));
+
+const mfRoutesServiceMock = {
+  microfronts: [
+    {
+      remoteEntry: 'http://localhost:8001/remoteEntry.js',
+      exposedModule: './HomeModule',
+      displayName: 'Home',
+      routePath: 'home',
+      ngModuleName: 'HomeModule',
+    },
+    {
+      remoteEntry: 'http://localhost:8002/remoteEntry.js',
+      exposedModule: './PokemonsModule',
+      displayName: 'Pokemons',
+      routePath: 'pokemons',
+      ngModuleName: 'PokemonsModule',
+    },
+    {
+      remoteEntry: 'http://localhost:8003/remoteEntry.js',
+      exposedModule: './GamesModule',
+      displayName: 'Games',
+      routePath: 'games',
+      ngModuleName: 'GamesModule',
+    },
+  ],
+};
 
 const mockRoutes: Routes = [
   { path: 'home', component: MockHomeComponent },
@@ -38,7 +69,13 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(mockRoutes)],
       declarations: [HeaderComponent],
-      providers: [{ provide: ThemeService, useValue: themeServiceMock }],
+      providers: [
+        { provide: ThemeService, useValue: themeServiceMock },
+        {
+          provide: MfRoutesService,
+          useValue: mfRoutesServiceMock,
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
@@ -64,6 +101,15 @@ describe('HeaderComponent', () => {
     expect(titleElement.textContent).toContain('PokeSummary');
   });
 
+  it('should have defined microfronts', () => {
+    const expectedMicrofronts = mfRoutesServiceMock.microfronts.map((mf) => ({
+      name: mf.displayName,
+      url: mf.routePath,
+    }));
+    fixture.detectChanges();
+    expect(component.microfronts).toEqual(expectedMicrofronts);
+  });
+
   describe('when using nav group', () => {
     beforeEach(() => {
       fixture.detectChanges();
@@ -71,7 +117,7 @@ describe('HeaderComponent', () => {
 
     it('should navigate to home route', () => {
       const homeLinkElement = fixture.debugElement.query(
-        By.css('nav ul.navbar-nav li.nav-item a[routerLink="/home"]')
+        By.css('nav ul.navbar-nav li.nav-item a[href="/home"]')
       );
       homeLinkElement.nativeElement.click();
       expect(router.url).toBe('/home');
@@ -79,7 +125,7 @@ describe('HeaderComponent', () => {
 
     it('should navigate to pokemons route', () => {
       const pokemonsLinkElement = fixture.debugElement.query(
-        By.css('nav ul.navbar-nav li.nav-item a[routerLink="/pokemons"]')
+        By.css('nav ul.navbar-nav li.nav-item a[href="/pokemons"]')
       );
       pokemonsLinkElement.nativeElement.click();
       expect(router.url).toBe('/pokemons');
@@ -87,7 +133,7 @@ describe('HeaderComponent', () => {
 
     it('should navigate to games route', () => {
       const gamesLinkElement = fixture.debugElement.query(
-        By.css('nav ul.navbar-nav li.nav-item a[routerLink="/games"]')
+        By.css('nav ul.navbar-nav li.nav-item a[href="/games"]')
       );
       gamesLinkElement.nativeElement.click();
       expect(router.url).toBe('/games');

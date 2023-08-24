@@ -4,6 +4,22 @@ import { AppComponent } from './app.component';
 import { MockComponents } from 'ng-mocks';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CustomManifest } from './utils/manifest.type';
+
+const mockManifest: CustomManifest = {
+  mock: {
+    remoteEntry: 'http://localhost:4200/remoteEntry.js',
+    exposedModule: './MockModule',
+    displayName: 'Mock',
+    routePath: 'mock',
+    ngModuleName: 'MockModule',
+  },
+} as any;
+
+jest.mock('@angular-architects/module-federation', () => ({
+  getManifest: jest.fn().mockImplementation(() => mockManifest),
+  loadRemoteModule: jest.fn(),
+}));
 
 describe('AppComponent', () => {
   beforeEach(async () => {
