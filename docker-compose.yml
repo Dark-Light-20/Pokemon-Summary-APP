@@ -30,6 +30,6 @@ services:
       - 8003:80
   config-api:
     build: ./api
-    image: pokesummary-config-api
+    image: pokesummary-config-api-dynamic-mfs
     ports:
       - 3000:80
