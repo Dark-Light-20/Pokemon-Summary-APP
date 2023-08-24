@@ -9,6 +9,7 @@ import { GameDetailComponent } from '../game-detail/game-detail.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GameService } from '../../services/game.service';
 import { By } from '@angular/platform-browser';
+import { SharedLibService } from 'shared-lib';
 
 const gameServiceMock = {
   getListData: jest.fn().mockReturnValue(of(GAME_LIST_MOCK)),
@@ -19,6 +20,10 @@ const mockRoutes: Routes = [
   { path: 'detail/:id', component: MockComponent(GameDetailComponent) },
 ];
 
+const sharedLibServiceMock = {
+  dummyUUID: 'random',
+};
+
 describe('GameListComponent', () => {
   let component: GameListComponent;
   let fixture: ComponentFixture<GameListComponent>;
@@ -28,7 +33,10 @@ describe('GameListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(mockRoutes)],
       declarations: [GameListComponent, MockComponent(GameDetailComponent)],
-      providers: [{ provide: GameService, useValue: gameServiceMock }],
+      providers: [
+        { provide: GameService, useValue: gameServiceMock },
+        { provide: SharedLibService, useValue: sharedLibServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameListComponent);

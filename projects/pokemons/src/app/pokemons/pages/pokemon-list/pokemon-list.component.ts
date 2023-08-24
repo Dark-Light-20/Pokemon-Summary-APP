@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 import { PokemonList } from '../../models/pokemon.model';
 import { take } from 'rxjs';
+import { SharedLibService } from 'shared-lib';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -25,7 +26,10 @@ export class PokemonListComponent implements OnInit {
 
   pokemons: PokemonList[] = [];
 
-  constructor(private _pokemonService: PokemonService) {}
+  constructor(
+    private _pokemonService: PokemonService,
+    private _sharedLib: SharedLibService
+  ) {}
 
   ngOnInit(): void {
     this._pokemonService
@@ -35,6 +39,7 @@ export class PokemonListComponent implements OnInit {
         this._pokemonList = data;
         this.changePage(this._actualPage);
       });
+    console.log(this._sharedLib.dummyUUID);
   }
 
   changePage(page: number): void {

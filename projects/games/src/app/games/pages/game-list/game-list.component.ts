@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameList } from '../../models/game.model';
 import { GameService } from '../../services/game.service';
 import { take } from 'rxjs';
+import { SharedLibService } from 'shared-lib';
 
 @Component({
   selector: 'app-game-list',
@@ -23,7 +24,10 @@ export class GameListComponent implements OnInit {
 
   games: GameList[] = [];
 
-  constructor(private _gameService: GameService) {}
+  constructor(
+    private _gameService: GameService,
+    private _sharedLib: SharedLibService
+  ) {}
 
   ngOnInit(): void {
     this._gameService
@@ -33,6 +37,7 @@ export class GameListComponent implements OnInit {
         this._gameList = data;
         this.changePage(this._actualPage);
       });
+    console.log(this._sharedLib.dummyUUID);
   }
 
   changePage(page: number): void {

@@ -7,9 +7,14 @@ import { By } from '@angular/platform-browser';
 import { MOCK_POKEMON } from './utils/mocks/pokemon.mock';
 import { of } from 'rxjs';
 import { PokemonService } from './services/pokemon.service';
+import { SharedLibService } from 'shared-lib';
 
 const pokemonServiceMock = {
   getRandomPokemon: jest.fn().mockReturnValue(of(MOCK_POKEMON)),
+};
+
+const sharedLibServiceMock = {
+  dummyUUID: 'random',
 };
 
 describe('HomeComponent', () => {
@@ -19,7 +24,10 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent, MockComponent(RandomPokemonComponent)],
-      providers: [{ provide: PokemonService, useValue: pokemonServiceMock }],
+      providers: [
+        { provide: PokemonService, useValue: pokemonServiceMock },
+        { provide: SharedLibService, useValue: sharedLibServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
