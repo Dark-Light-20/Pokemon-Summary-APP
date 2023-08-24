@@ -4,28 +4,28 @@ services:
     build:
       args:
         APP: host
-    image: pokesummary-host
+    image: pokesummary-host-dynamic-mfs
     ports:
       - 8000:80
   home:
     build:
       args:
         APP: home
-    image: pokesummary-home
+    image: pokesummary-home-dynamic-mfs
     ports:
       - 8001:80
   pokemons:
     build:
       args:
         APP: pokemons
-    image: pokesummary-pokemons
+    image: pokesummary-pokemons-dynamic-mfs
     ports:
       - 8002:80
   games:
     build:
       args:
         APP: games
-    image: pokesummary-games
+    image: pokesummary-games-dynamic-mfs
     ports:
       - 8003:80
   config-api:
