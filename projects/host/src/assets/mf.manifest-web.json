@@ -1,0 +1,23 @@
+{
+  "home": {
+    "remoteEntry": "/home/remoteEntry.js",
+    "exposedModule": "./HomeModule",
+    "displayName": "Home",
+    "routePath": "home",
+    "ngModuleName": "HomeModule"
+  },
+  "pokemons": {
+    "remoteEntry": "/pokemons/remoteEntry.js",
+    "exposedModule": "./PokemonsModule",
+    "displayName": "Pokemons",
+    "routePath": "pokemons",
+    "ngModuleName": "PokemonsModule"
+  },
+  "games": {
+    "remoteEntry": "/games/remoteEntry.js",
+    "exposedModule": "./GamesModule",
+    "displayName": "Games",
+    "routePath": "games",
+    "ngModuleName": "GamesModule"
+  }
+}

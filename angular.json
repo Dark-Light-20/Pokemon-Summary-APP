@@ -55,6 +55,29 @@
               "outputHashing": "all",
               "extraWebpackConfig": "projects/host/webpack.prod.config.js"
             },
+            "netlify": {
+              "outputPath": "dist",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/host/src/environments/environment.ts",
+                  "with": "projects/host/src/environments/environment.netlify.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/host/webpack.prod.config.js"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
