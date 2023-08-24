@@ -28,6 +28,8 @@ This project contains an example application for learning implementation of micr
 
 5. [Deploy Docker Stack](#deploy-docker-stack)
 
+6. [Netlify Deploy](#netlify-deploy)
+
 ## Architecture
 
 ![app mockup](docs/pokemon-app-mockup.png "Poke-Summary App Mockup")
@@ -177,3 +179,13 @@ The Stack exposes these ports:
 ## Important considerations
 
 When you take microfrontend based projects to production, and if each app is hosted in different servers with different URL domains you need to take in count the **CORS** restriction, you need to warranty that the web server of each microfront allows the host container server domain in its "Allow-Access-Control-Origin" header. As you can see, in the Dockerfile for the microfronts in the stage 2 for the nginx config, it copies a custom _nginx.conf_ file into the container, this file has a public consumption of resources ('\*' value in header), this can be a bad practice in some crucial real productive projects or applications.
+
+# Netlify Deploy
+
+This project also has a netlify configuration file to deploy the site into this web application deploy service, it uses a custom build command to prepare the _dist/_ directory to have:
+
+- In the root dist folder it has all the files generated in the build of host app.
+- The host app builded with a custom configuration, it has:
+  - outdir directly to _dist/_ folder.
+  - Environment file replacement to a specific netlify environment, in which the mfConfigUrl variable points to a json asset file that has the remoteEntries called from root url "/".
+- The microfronts are builded as normal.
